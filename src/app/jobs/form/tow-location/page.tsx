@@ -20,7 +20,7 @@ function TowLocationPage() {
       <div className="relative">
         <GoogleMap onLocationChanged={onLocationChanged} />
 
-        {/* <GoogleMapAutocomplete className="absolute top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] rounded-lg z-10" onLocationChanged={onLocationChanged} /> */}
+        <GoogleMapAutocomplete className="absolute top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] rounded-lg z-10" onLocationChanged={onLocationChanged} />
 
         <Button type="submit" size="lg" className="absolute top-72 font-semibold left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           Confirm Location <ArrowRight className="w-4 h-4 ml-2" />

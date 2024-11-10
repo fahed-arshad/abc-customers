@@ -30,15 +30,6 @@ type GoogleMapProps = {
 const GOOGLE_MAP_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string;
 
 function GoogleMap({ location, onLocationChanged }: GoogleMapProps) {
-  const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: GOOGLE_MAP_API_KEY,
-    libraries: DEFAULT_PROPS.libraries as Libraries
-  });
-
-  if (loadError) return <p className="text-center">Encountered error while loading google maps</p>;
-
-  if (!isLoaded) return <p className="text-center">Map is loading ...</p>;
-
   return (
     <ReactGoogleMap mapContainerStyle={DEFAULT_PROPS.style} center={location ?? DEFAULT_PROPS.center} zoom={DEFAULT_PROPS.zoom} options={DEFAULT_PROPS.options}>
       <Marker
