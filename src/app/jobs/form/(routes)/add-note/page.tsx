@@ -41,7 +41,7 @@ function AddNotePage() {
   };
 
   return (
-    <div>
+    <div className="container py-20">
       <h1 className="text-4xl text-center font-semibold">ADD A NOTE</h1>
       <Separator className="my-8 w-full mx-auto md:w-[800px]" />
       <Form {...form}>

@@ -6,6 +6,8 @@ import { Input } from '@/components/ui/input';
 
 import { Location } from '../hooks/useJobFormStore';
 
+import { OMAN_BOUNDS } from './google-map';
+
 type GoogleMapsAutocompleteProps = React.HTMLAttributes<HTMLDivElement> & {
   location?: Location;
   onLocationChanged?: (location: Location) => void;
@@ -44,7 +46,7 @@ function GoogleMapAutocomplete({ className, location, onLocationChanged }: Googl
 
   return (
     <div className={className}>
-      <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+      <Autocomplete options={{ bounds: OMAN_BOUNDS, strictBounds: true, componentRestrictions: { country: 'om' } }} onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
         <Input autoFocus placeholder="Enter an address or location" value={address} onChange={(e) => setAddress(e.target.value)} />
       </Autocomplete>
     </div>

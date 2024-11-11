@@ -2,22 +2,32 @@ import { GoogleMap as ReactGoogleMap, Marker } from '@react-google-maps/api';
 
 import { Location } from '../hooks/useJobFormStore';
 
+const OMAN = { lat: 21.4735, lng: 55.9754 };
+
+export const OMAN_BOUNDS = {
+  north: 26.385,
+  south: 16.645,
+  west: 52.0,
+  east: 59.839
+};
+
 const DEFAULT_PROPS = {
   style: {
     width: '100%',
     height: '80vh',
-    borderRadius: '15px 0px 0px 15px'
+    borderRadius: '0px 0px 0px 0px'
   },
-  center: {
-    lat: 35.8799866,
-    lng: 76.5048004
-  },
+  center: OMAN,
   zoom: 15,
   options: {
     zoomControl: true,
     tilt: 0,
     gestureHandling: 'auto',
-    mapTypeId: 'roadmap'
+    mapTypeId: 'roadmap',
+    restriction: {
+      latLngBounds: OMAN_BOUNDS,
+      strictBounds: true
+    }
   },
   libraries: ['places']
 };

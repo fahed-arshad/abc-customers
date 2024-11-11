@@ -17,7 +17,7 @@ function SummaryPage() {
   const contactInformation = `${job.customer.firstName} ${job.customer.lastName}\n${job.customer.phone}\n${job.customer.email}`;
 
   return (
-    <div>
+    <div className="container py-20">
       <h1 className="text-4xl text-center font-semibold">SUMMARY</h1>
       <Separator className="my-8 w-full mx-auto md:w-[800px]" />
       <h2 className="text-2xl text-center font-semibold">Request for Tow Service</h2>
