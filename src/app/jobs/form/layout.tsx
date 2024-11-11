@@ -3,6 +3,7 @@
 import { useJsApiLoader } from '@react-google-maps/api';
 
 import { Progress } from '@/components/ui/progress';
+import { useJobFormStore } from './hooks/useJobFormStore';
 
 const GOOGLE_MAP_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string;
 
@@ -11,6 +12,10 @@ function JobsFormLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const currentStep = useJobFormStore((state) => state.currentStep);
+
+  const progress = ((currentStep.index + 1) / 8) * 100;
+
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: GOOGLE_MAP_API_KEY,
     libraries: ['places'],
@@ -23,7 +28,7 @@ function JobsFormLayout({
 
   return (
     <div>
-      <Progress value={33} className="bg-white rounded-none" />
+      <Progress value={progress} className="bg-white rounded-none" />
       {children}
     </div>
   );
