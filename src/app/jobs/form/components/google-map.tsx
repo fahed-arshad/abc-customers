@@ -1,6 +1,7 @@
 import { GoogleMap as ReactGoogleMap, Marker } from '@react-google-maps/api';
 
 import { Location } from '../hooks/useJobFormStore';
+import useLocation from '../hooks/useLocation';
 
 const OMAN = { lat: 21.4735, lng: 55.9754 };
 
@@ -38,28 +39,20 @@ type GoogleMapProps = {
 };
 
 function GoogleMap({ location, onLocationChanged }: GoogleMapProps) {
+  const { reverseGeocode, isInOman } = useLocation();
+
   const handleOnMarkerChanged = async (e: google.maps.MapMouseEvent) => {
     if (!e.latLng) return;
 
-    const location = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+    const position = { lat: e.latLng.lat(), lng: e.latLng.lng() };
 
-    // Reverse geocode the location
-    const geocoder = new google.maps.Geocoder();
-    const response = await geocoder.geocode({ location });
+    const location = await reverseGeocode(position);
 
-    if (response.results.length > 0) {
-      const address = response.results.find((result) => {
-        const types = result.types;
-        const geometry = result.geometry;
-        const isTypeChecked = types.includes('neighborhood') || types.includes('locality') || types.includes('premise') || types.includes('route');
-        const isLocationTypeChecked = geometry.location_type === 'GEOMETRIC_CENTER';
-        return isTypeChecked && isLocationTypeChecked;
-      })?.formatted_address;
+    if (!location) return alert('Could not find address for the selected location');
 
-      if (!address) return alert('Could not find address for the selected location');
+    if (!isInOman(position)) return alert('Please select a location within Oman');
 
-      onLocationChanged({ address, lat: e.latLng.lat(), lng: e.latLng.lng() });
-    }
+    onLocationChanged(location);
   };
 
   return (

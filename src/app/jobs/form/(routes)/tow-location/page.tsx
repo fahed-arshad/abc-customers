@@ -1,7 +1,10 @@
 'use client';
 
+import { useEffect } from 'react';
+
 import { Location, useJobFormStore } from '../../hooks/useJobFormStore';
 import useJobForm from '../../hooks/useJobForm';
+import useLocation from '../../hooks/useLocation';
 
 import { Button } from '@/components/ui/button';
 import GoogleMapAutocomplete from '../../components/google-map-autocomplete';
@@ -11,8 +14,17 @@ import { ArrowRight } from 'lucide-react';
 
 function TowLocationPage() {
   const { goToNextStep } = useJobForm();
+  const { findMyLocation, isInOman } = useLocation();
   const towLocation = useJobFormStore((state) => state.job.towLocation);
   const setTowLocation = useJobFormStore((state) => state.setTowLocation);
+
+  useEffect(() => {
+    findMyLocation().then((location) => {
+      if (!location) return alert('Could not find your location');
+      if (!isInOman(location)) return alert('You are not in Oman. Please select a location within Oman');
+      setTowLocation(location);
+    });
+  }, []);
 
   const onLocationChanged = (location: Location) => {
     // Save the location into the Zustand store
