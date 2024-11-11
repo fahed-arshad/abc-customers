@@ -48,8 +48,16 @@ function GoogleMap({ location, onLocationChanged }: GoogleMapProps) {
     const response = await geocoder.geocode({ location });
 
     if (response.results.length > 0) {
-      const address = response.results[0].formatted_address;
-      console.log('Reverse geocoded address:', address);
+      const address = response.results.find((result) => {
+        const types = result.types;
+        const geometry = result.geometry;
+        const isTypeChecked = types.includes('neighborhood') || types.includes('locality') || types.includes('premise') || types.includes('route');
+        const isLocationTypeChecked = geometry.location_type === 'GEOMETRIC_CENTER';
+        return isTypeChecked && isLocationTypeChecked;
+      })?.formatted_address;
+
+      if (!address) return alert('Could not find address for the selected location');
+
       onLocationChanged({ address, lat: e.latLng.lat(), lng: e.latLng.lng() });
     }
   };
