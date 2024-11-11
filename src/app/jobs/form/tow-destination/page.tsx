@@ -6,7 +6,7 @@ import GoogleMap from '../components/google-map';
 
 import { ArrowRight } from 'lucide-react';
 
-function TowLocationPage() {
+function TowDestinationPage() {
   const onLocationChanged = (location: Location) => {
     // TODO: Save the location into the Zustand store
   };
@@ -14,7 +14,7 @@ function TowLocationPage() {
   return (
     <div>
       <div className="py-8">
-        <h1 className="capitalize text-4xl text-center font-semibold">TOW LOCATION</h1>
+        <h1 className="capitalize text-4xl text-center font-semibold">TOW DESTINATION</h1>
       </div>
 
       <div className="relative">
@@ -30,4 +30,4 @@ function TowLocationPage() {
   );
 }
 
-export default TowLocationPage;
+export default TowDestinationPage;
