@@ -7,6 +7,13 @@ function useJobForm() {
 
   const currentStep = useJobFormStore((state) => state.currentStep);
   const setCurrentStep = useJobFormStore((state) => state.setCurrentStep);
+  const reset = useJobFormStore((state) => state.reset);
+
+  const goTo = (stepIndex: number) => {
+    const step = Steps[stepIndex];
+    setCurrentStep(step);
+    router.push(step.href);
+  };
 
   const goToNextStep = () => {
     // Prevent going to the next step if the current step
@@ -28,7 +35,17 @@ function useJobForm() {
     router.push(prevStep.href);
   };
 
-  return { goToNextStep, goToPrevStep };
+  const getProgress = () => {
+    return (currentStep.index / (Steps.length - 1)) * 100;
+  };
+
+  const resetForm = () => {
+    reset();
+    setCurrentStep(Steps[0]);
+    router.push(Steps[0].href);
+  };
+
+  return { goTo, goToNextStep, goToPrevStep, getProgress, resetForm };
 }
 
 export default useJobForm;

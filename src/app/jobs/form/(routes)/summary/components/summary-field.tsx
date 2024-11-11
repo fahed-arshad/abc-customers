@@ -1,8 +1,7 @@
-import { createContext, PropsWithChildren, ReactNode, useContext } from 'react';
-
-import Link from 'next/link';
+import { createContext, ReactNode, useContext } from 'react';
 
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { Textarea as ShadTextarea } from '@/components/ui/textarea';
 
 import { Pencil } from 'lucide-react';
@@ -10,7 +9,7 @@ import { Pencil } from 'lucide-react';
 type SummaryField = {
   title: string;
   value: string;
-  href?: string;
+  onEdit?: () => void;
 };
 
 type SummaryFieldContext = {
@@ -38,7 +37,7 @@ function SummaryField({ summaryField, children, className }: SummaryFieldProps) 
       <div className={className}>
         <div className="flex flex-row items-center justify-between mb-2">
           <SummaryField.Title />
-          {summaryField.href && <SummaryField.EditLink />}
+          {summaryField.onEdit && <SummaryField.EditLink />}
         </div>
         {children}
       </div>
@@ -55,10 +54,11 @@ SummaryField.Title = function () {
 
 SummaryField.EditLink = function () {
   const { summaryField } = useSummaryFieldContext();
+  const action = summaryField.onEdit as () => void;
   return (
-    <Link href={summaryField.href!} className="text-sm">
+    <Button className="text-sm text-black hover:no-underline" variant="link" onClick={() => action()}>
       <Pencil className="w-3 h-3 mr-1 inline" /> Edit
-    </Link>
+    </Button>
   );
 };
 

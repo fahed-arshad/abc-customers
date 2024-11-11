@@ -1,6 +1,6 @@
 'use client';
 
-import useJobForm from '../form/hooks/useJobForm';
+import useJobForm from '../../hooks/useJobForm';
 
 import { Button } from '@/components/ui/button';
 
