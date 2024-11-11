@@ -11,7 +11,7 @@ function JobsPage() {
         <ArrowDown size={64} className="text-primary" />
       </div>
 
-      <Link href="/jobs/tow">
+      <Link href="/jobs/form/find-me">
         <div className="bg-secondary p-6 rounded-full w-32 h-32 mx-auto flex flex-col items-center justify-center space-y-2">
           <Image src="/icons/tow.svg" alt="Tow Icon" width={60} height={60} />
           <p className="font-black text-white text-center">Tow</p>

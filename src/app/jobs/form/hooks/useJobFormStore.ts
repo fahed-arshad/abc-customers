@@ -42,7 +42,7 @@ export const Steps: Step[] = [
   {
     index: 0,
     name: 'find-me',
-    href: '/jobs/find-me'
+    href: '/jobs/form/find-me'
   },
   {
     index: 1,
@@ -82,14 +82,15 @@ export const Steps: Step[] = [
 ];
 
 type JobFormState = {
+  job: Job;
   currentStep: Step;
   setCurrentStep: (step: Step) => void;
-  job: Job;
   setTowLocation: (location: Location) => void;
   setTowDestination: (location: Location) => void;
   setVehicle: (vehicle: Vehicle) => void;
   setCustomer: (customer: Customer) => void;
   setNote: (note: string | undefined) => void;
+  reset: () => void;
 };
 
 const DEFAULT_JOB: Job = {
@@ -131,7 +132,8 @@ export const useJobFormStore = create<JobFormState>()(
       setTowDestination: (location) => set((state) => ({ job: { ...state.job, towDestination: location } })),
       setVehicle: (vehicle) => set((state) => ({ job: { ...state.job, vehicle } })),
       setCustomer: (customer) => set((state) => ({ job: { ...state.job, customer } })),
-      setNote: (note) => set((state) => ({ job: { ...state.job, note } }))
+      setNote: (note) => set((state) => ({ job: { ...state.job, note } })),
+      reset: () => set({ job: DEFAULT_JOB })
     }),
     { name: 'jobFormStore' }
   )
