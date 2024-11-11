@@ -9,6 +9,9 @@ import { useQuery } from '@tanstack/react-query';
 
 import { getVehicleMakes, getVehicleModels } from '@/app/actions/vehicle';
 
+import { useJobFormStore } from '../../hooks/useJobFormStore';
+import useJobForm from '../../hooks/useJobForm';
+
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -30,6 +33,10 @@ const formSchema = z.object({
 type FormProps = z.infer<typeof formSchema>;
 
 function VehicleInformationPage() {
+  const { goToNextStep } = useJobForm();
+  const vehicle = useJobFormStore((state) => state.job.vehicle);
+  const setVehicle = useJobFormStore((state) => state.setVehicle);
+
   const form = useForm<FormProps>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,7 +45,8 @@ function VehicleInformationPage() {
       year: '',
       color: '',
       registrationNo: ''
-    }
+    },
+    values: vehicle
   });
 
   const { data: vehicleMakes, isLoading: isVehicleMakesLoading } = useQuery({
@@ -52,7 +60,8 @@ function VehicleInformationPage() {
   });
 
   const handleOnSubmit = (data: FormProps) => {
-    console.log(data);
+    setVehicle(data);
+    goToNextStep();
   };
 
   return (

@@ -1,14 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Autocomplete } from '@react-google-maps/api';
 
 import { Input } from '@/components/ui/input';
 
-export type Location = {
-  address: string;
-  lat: number;
-  lng: number;
-};
+import { Location } from '../hooks/useJobFormStore';
 
 type GoogleMapsAutocompleteProps = React.HTMLAttributes<HTMLDivElement> & {
   location?: Location;
@@ -18,6 +14,11 @@ type GoogleMapsAutocompleteProps = React.HTMLAttributes<HTMLDivElement> & {
 function GoogleMapAutocomplete({ className, location, onLocationChanged }: GoogleMapsAutocompleteProps) {
   const [address, setAddress] = useState(location?.address ?? '');
   const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete | null>(null);
+
+  // Update the address when the location changes
+  useEffect(() => {
+    setAddress(location?.address ?? '');
+  }, [location?.address]);
 
   const onLoad = (autocomplete: google.maps.places.Autocomplete) => {
     setAutocomplete(autocomplete);
@@ -33,6 +34,7 @@ function GoogleMapAutocomplete({ className, location, onLocationChanged }: Googl
     setAddress(place.formatted_address);
 
     if (!place?.geometry?.location) return;
+
     onLocationChanged?.({
       address: place.formatted_address ?? '',
       lat: place.geometry?.location.lat(),

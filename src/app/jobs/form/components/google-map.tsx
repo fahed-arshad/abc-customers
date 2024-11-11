@@ -1,6 +1,6 @@
-import { GoogleMap as ReactGoogleMap, Libraries, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { GoogleMap as ReactGoogleMap, Marker } from '@react-google-maps/api';
 
-import { Location } from './google-map-autocomplete';
+import { Location } from '../hooks/useJobFormStore';
 
 const DEFAULT_PROPS = {
   style: {
@@ -27,18 +27,26 @@ type GoogleMapProps = {
   onLocationChanged: (location: Location) => void;
 };
 
-const GOOGLE_MAP_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string;
-
 function GoogleMap({ location, onLocationChanged }: GoogleMapProps) {
+  const handleOnMarkerChanged = async (e: google.maps.MapMouseEvent) => {
+    if (!e.latLng) return;
+
+    const location = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+
+    // Reverse geocode the location
+    const geocoder = new google.maps.Geocoder();
+    const response = await geocoder.geocode({ location });
+
+    if (response.results.length > 0) {
+      const address = response.results[0].formatted_address;
+      console.log('Reverse geocoded address:', address);
+      onLocationChanged({ address, lat: e.latLng.lat(), lng: e.latLng.lng() });
+    }
+  };
+
   return (
     <ReactGoogleMap mapContainerStyle={DEFAULT_PROPS.style} center={location ?? DEFAULT_PROPS.center} zoom={DEFAULT_PROPS.zoom} options={DEFAULT_PROPS.options}>
-      <Marker
-        draggable
-        position={location ?? DEFAULT_PROPS.center}
-        onDragEnd={(e) => {
-          console.log(e.latLng?.lat());
-        }}
-      />
+      <Marker draggable position={location ?? DEFAULT_PROPS.center} onDragEnd={handleOnMarkerChanged} />
     </ReactGoogleMap>
   );
 }

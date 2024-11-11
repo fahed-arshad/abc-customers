@@ -5,46 +5,58 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useForm } from 'react-hook-form';
 
+import { useJobFormStore } from '../../hooks/useJobFormStore';
+import useJobForm from '../../hooks/useJobForm';
+
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
 
 import { ArrowRight } from 'lucide-react';
-import { Switch } from '@/components/ui/switch';
 
 const formSchema = z.object({
-  isStandardServiceType: z.boolean().default(true)
+  note: z.string().optional()
 });
 
 type FormProps = z.infer<typeof formSchema>;
 
-function ServiceTypePage() {
+function AddNotePage() {
+  const { goToNextStep } = useJobForm();
+  const note = useJobFormStore((state) => state.job.note);
+  const setNote = useJobFormStore((state) => state.setNote);
+
   const form = useForm<FormProps>({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      note: ''
+    },
+    values: { note }
   });
 
   const handleOnSubmit = (data: FormProps) => {
     console.log(data);
+    setNote(data.note);
+    goToNextStep();
   };
 
   return (
     <div>
-      <h1 className="text-4xl text-center font-semibold">SERVICE TYPE</h1>
+      <h1 className="text-4xl text-center font-semibold">ADD A NOTE</h1>
       <Separator className="my-8 w-full mx-auto md:w-[800px]" />
       <Form {...form}>
         <form className="space-y-4 w-full mx-auto md:w-[600px]" onSubmit={form.handleSubmit(handleOnSubmit)}>
           <FormField
             control={form.control}
-            name="isStandardServiceType"
+            name="note"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                <div className="space-y-0.5">
-                  <FormLabel className="text-base">Standard service</FormLabel>
-                  <FormDescription>20-120+ minute wait time</FormDescription>
-                </div>
+              <FormItem>
+                <FormLabel>Note</FormLabel>
+                <FormDescription>Please provide any additional details you might like us to know about your request.</FormDescription>
                 <FormControl>
-                  <Switch checked={field.value} onCheckedChange={field.onChange} />
+                  <Textarea {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -59,4 +71,4 @@ function ServiceTypePage() {
   );
 }
 
-export default ServiceTypePage;
+export default AddNotePage;

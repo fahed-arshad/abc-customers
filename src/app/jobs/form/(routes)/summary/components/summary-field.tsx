@@ -64,10 +64,10 @@ SummaryField.EditLink = function () {
 
 SummaryField.Input = function () {
   const { summaryField } = useSummaryFieldContext();
-  return <Input disabled value={summaryField.value} />;
+  return <Input disabled value={summaryField.value} className="disabled:opacity-100" />;
 };
 
 SummaryField.Textarea = function () {
   const { summaryField } = useSummaryFieldContext();
-  return <ShadTextarea disabled value={summaryField.value} />;
+  return <ShadTextarea disabled value={summaryField.value} className="disabled:opacity-100" />;
 };
