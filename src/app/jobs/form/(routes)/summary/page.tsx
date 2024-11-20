@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 import { useMutation } from '@tanstack/react-query';
 
@@ -18,7 +17,6 @@ import { Checkbox } from '@/components/ui/checkbox';
 import SummaryField from './components/summary-field';
 
 function SummaryPage() {
-  const router = useRouter();
   const { goTo, resetForm } = useJobForm();
   const job = useJobFormStore((state) => state.job);
   const [checkedAgreement, setCheckedAgreement] = useState(false);
@@ -34,9 +32,8 @@ function SummaryPage() {
   } = useMutation({
     mutationFn: createJob,
     onSuccess: (data) => {
-      console.log('Job created', data);
       // resetForm();
-      router.push(data?.checkoutUrl);
+      window.open(data?.checkoutUrl, '_blank');
     }
   });
 
