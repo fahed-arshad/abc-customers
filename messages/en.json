@@ -1,0 +1,115 @@
+{
+  "header": {
+    "back": "BACK"
+  },
+  "jobsPage": {
+    "title": "Please select a service to get started",
+    "towButtonText": "Tow"
+  },
+  "form": {
+    "findMePage": {
+      "title": "Where is your vehicle?",
+      "description": "We need your location to dispatch the closest service provider.",
+      "cta": "Find Me"
+    },
+    "towLocationPage": {
+      "title": "TOW LOCATION",
+      "cta": "Confirm Location"
+    },
+    "towDestinationPage": {
+      "title": "TOW DESTINATION",
+      "cta": "Confirm Location"
+    },
+    "vehicleInformationPage": {
+      "title": "VEHICLE INFORMATION",
+      "makeField": {
+        "title": "Make",
+        "placeholder": "Select vehicle make"
+      },
+      "modelField": {
+        "title": "Model",
+        "placeholder": "Select vehicle model"
+      },
+      "yearField": {
+        "title": "Year",
+        "placeholder": "Select vehicle year"
+      },
+      "colorField": {
+        "title": "Color",
+        "placeholder": "Select vehicle color"
+      },
+      "regNoField": {
+        "title": "Registration Number"
+      },
+      "cta": "Next"
+    },
+    "customerInformationPage": {
+      "title": "CUSTOMER INFORMATION",
+      "firstNameField": {
+        "title": "First Name"
+      },
+      "lastNameField": {
+        "title": "Last Name"
+      },
+      "phoneField": {
+        "title": "Phone"
+      },
+      "emailField": {
+        "title": "Email"
+      },
+      "cta": "Next"
+    },
+    "addNotePage": {
+      "title": "ADD A NOTE",
+      "noteField": {
+        "title": "Note",
+        "description": "Please provide any additional details you might like us to know about your request."
+      },
+      "cta": "Next"
+    },
+    "serviceTypePage": {
+      "title": "SERVICE TYPE",
+      "standardServiceField": {
+        "title": "Standard service",
+        "description": "20-120+ minute wait time"
+      },
+      "cta": "Next"
+    },
+    "summaryPage": {
+      "title": "SUMMARY",
+      "description": "Request for Tow Service",
+      "locationField": {
+        "title": "Location",
+        "cta": "Edit"
+      },
+      "destinationField": {
+        "title": "Destination",
+        "cta": "Edit"
+      },
+      "serviceField": {
+        "title": "Service",
+        "cta": "Edit"
+      },
+      "vehicleField": {
+        "title": "Vehicle",
+        "cta": "Edit"
+      },
+      "contactField": {
+        "title": "Contact",
+        "cta": "Edit"
+      },
+      "amountField": {
+        "title": "Amount",
+        "hookup": "{hookup} Rials Omani",
+        "mileage": "{mileage} Rials Omani",
+        "total": "{total} Rials Omani",
+        "cta": "Edit"
+      },
+      "termsField": {
+        "title": "I agree to terms and conditions"
+      },
+      "edit": "edit",
+      "cta": "Enter Payment"
+    }
+  }
+}
