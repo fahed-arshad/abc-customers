@@ -1,0 +1,115 @@
+{
+  "header": {
+    "back": "خلف"
+  },
+  "jobsPage": {
+    "title": "يرجى تحديد خدمة للبدء",
+    "towButtonText": "سحب"
+  },
+  "form": {
+    "findMePage": {
+      "title": "أين مركبتك؟",
+      "description": "نحتاج إلى موقعك لإرسال أقرب مزود خدمة.",
+      "cta": "ابحث عني"
+    },
+    "towLocationPage": {
+      "title": "موقع السحب",
+      "cta": "تأكيد الموقع"
+    },
+    "towDestinationPage": {
+      "title": "موقع السحب",
+      "cta": "تأكيد الموقع"
+    },
+    "vehicleInformationPage": {
+      "title": "معلومات السيارة",
+      "makeField": {
+        "title": "صنع",
+        "placeholder": "اختر ماركة السيارة"
+      },
+      "modelField": {
+        "title": "نموذج",
+        "placeholder": "حدد طراز السيارة"
+      },
+      "yearField": {
+        "title": "سنة",
+        "placeholder": "اختر سنة السيارة"
+      },
+      "colorField": {
+        "title": "اللون",
+        "placeholder": "اختر لون السيارة"
+      },
+      "regNoField": {
+        "title": "رقم التسجيل"
+      },
+      "cta": "التالي"
+    },
+    "customerInformationPage": {
+      "title": "معلومات العملاء",
+      "firstNameField": {
+        "title": "الاسم الأول"
+      },
+      "lastNameField": {
+        "title": "اسم العائلة"
+      },
+      "phoneField": {
+        "title": "هاتف"
+      },
+      "emailField": {
+        "title": "بريد إلكتروني"
+      },
+      "cta": "التالي"
+    },
+    "addNotePage": {
+      "title": "أضف ملاحظة",
+      "noteField": {
+        "title": "ملحوظة",
+        "description": "يرجى تقديم أي تفاصيل إضافية قد ترغب في أن نعرفها بشأن طلبك."
+      },
+      "cta": "التالي"
+    },
+    "serviceTypePage": {
+      "title": "نوع الخدمة",
+      "standardServiceField": {
+        "title": "الخدمة القياسية",
+        "description": "20-120+ دقيقة وقت الانتظار"
+      },
+      "cta": "التالي"
+    },
+    "summaryPage": {
+      "title": "ملخص",
+      "description": "طلب خدمة السحب",
+      "locationField": {
+        "title": "موقع",
+        "cta": "يحرر"
+      },
+      "destinationField": {
+        "title": "وجهة",
+        "cta": "يحرر"
+      },
+      "serviceField": {
+        "title": "خدمة",
+        "cta": "يحرر"
+      },
+      "vehicleField": {
+        "title": "عربة",
+        "cta": "يحرر"
+      },
+      "contactField": {
+        "title": "اتصال",
+        "cta": "يحرر"
+      },
+      "amountField": {
+        "title": "كمية",
+        "hookup": "{hookup} ريال عماني",
+        "mileage": "{mileage} ريال عماني",
+        "total": "{total} ريال عماني",
+        "cta": "يحرر"
+      },
+      "termsField": {
+        "title": "أنا أوافق على الشروط والأحكام"
+      },
+      "edit": "يحرر",
+      "cta": "أدخل الدفع"
+    }
+  }
+}
