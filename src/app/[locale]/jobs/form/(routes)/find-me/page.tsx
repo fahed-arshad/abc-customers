@@ -11,9 +11,9 @@ function FindMePage() {
   const t = useTranslations('form.findMePage');
 
   return (
-    <div className="container bg-black">
-      <div className="h-[600px] flex flex-col items-center justify-center space-y-6 mb-8">
-        <div className="flex flex-row items-center gap-10">
+    <div className="bg-black h-[600px]">
+      <div className="container h-full flex flex-col items-center justify-center space-y-6 mb-8">
+        <div className="flex flex-row items-center gap-10 space-y-4">
           <div className="space-y-4">
             <h1 className="text-white text-3xl font-semibold md:text-4xl">{t('title')}</h1>
             <p className="text-white  md:text-xl">{t('description')}</p>
