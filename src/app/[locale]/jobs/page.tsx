@@ -9,9 +9,11 @@ function JobsPage() {
   const t = useTranslations('jobsPage');
   return (
     <div>
-      <div className="bg-black h-[600px] flex flex-col items-center justify-center space-y-6 mb-8">
-        <h1 className="text-white text-xl md:text-3xl">{t('title')}</h1>
-        <ArrowDown size={64} className="text-primary" />
+      <div className="bg-black h-[450px] md:h-[600px] flex items-center justify-center mb-8">
+        <div className="container flex flex-col items-center justify-center space-y-6">
+          <h1 className="text-center text-white text-xl md:text-3xl">{t('title')}</h1>
+          <ArrowDown size={64} className="text-primary" />
+        </div>
       </div>
 
       <Link href="/jobs/form/find-me">

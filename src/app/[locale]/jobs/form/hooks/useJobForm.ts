@@ -18,6 +18,9 @@ function useJobForm() {
   const goToNextStep = () => {
     // Prevent going to the next step if the current step
     if (currentStep.index === Steps.length - 1) {
+      const nextStep = Steps[0];
+      setCurrentStep(nextStep);
+      router.push(nextStep.href);
       return;
     }
     const nextStep = Steps[currentStep.index + 1];
