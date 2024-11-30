@@ -46,7 +46,7 @@ function TowLocationPage() {
         <GoogleMap location={towLocation} onLocationChanged={onLocationChanged} />
 
         <GoogleMapAutocomplete
-          className="absolute top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] rounded-lg z-10"
+          className="absolute top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[350px] md:w-[400px] rounded-lg z-10"
           location={towLocation}
           onLocationChanged={onLocationChanged}
         />

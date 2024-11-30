@@ -101,7 +101,7 @@ function CustomerInformationPage() {
               <FormItem>
                 <FormLabel>{t('emailField.title')}</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input type="email" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
