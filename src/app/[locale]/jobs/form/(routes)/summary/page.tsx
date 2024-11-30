@@ -35,8 +35,10 @@ function SummaryPage() {
   } = useMutation({
     mutationFn: createJob,
     onSuccess: (data) => {
-      resetForm();
-      window.open(data?.checkoutUrl, '_blank');
+      // resetForm();
+      const w = window.open();
+      w?.location.replace(data?.checkoutUrl);
+      // window.open(data?.checkoutUrl, '_blank');
     }
   });
 
