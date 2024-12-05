@@ -60,7 +60,7 @@ function ServiceTypePage() {
             )}
           />
           <div className="flex justify-center">
-            <Button type="submit">
+            <Button type="submit" className="w-full md:w-fit">
               {t('cta')} <ArrowRight className="w-4 h-4" />
             </Button>
           </div>

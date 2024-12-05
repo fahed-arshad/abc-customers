@@ -34,8 +34,6 @@ function TowLocationPage() {
     setTowLocation(location);
   };
 
-  console.log('Tow location (zustand)', towLocation);
-
   return (
     <div>
       <div className="py-8 space-y-2">
@@ -52,7 +50,7 @@ function TowLocationPage() {
           onLocationChanged={onLocationChanged}
         />
 
-        <Button size="lg" className="absolute bottom-20 font-semibold left-1/2 transform -translate-x-1/2 -translate-y-1/2" onClick={() => goToNextStep()}>
+        <Button size="lg" className="fixed bottom-5 w-4/5 md:w-fit font-semibold left-1/2 transform -translate-x-1/2 -translate-y-1/2" onClick={() => goToNextStep()}>
           {t('cta')} <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
       </div>
