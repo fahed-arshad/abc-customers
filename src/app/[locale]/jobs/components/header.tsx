@@ -31,7 +31,7 @@ function Header({ locale }: HeaderProps) {
   };
 
   return (
-    <div className="bg-secondary px-4 py-4 h-28">
+    <div className="fixed top-0 left-0 right-0 z-[999] bg-secondary px-4 py-4 h-28">
       <header className="container flex flex-row items-center justify-between">
         <Button variant="link" className="text-xl font-light hover:no-underline" onClick={() => goToPrevStep()}>
           {t('back')}
@@ -45,7 +45,7 @@ function Header({ locale }: HeaderProps) {
             {label}
             <ChevronDownIcon className="w-4 h-4" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
+          <DropdownMenuContent className="z-[999]">
             <DropdownMenuItem
               onClick={(e) => {
                 e.preventDefault();
