@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { useTranslations } from 'next-intl';
 
@@ -19,6 +20,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import SummaryField from './components/summary-field';
 
 function SummaryPage() {
+  const router = useRouter();
   const { goTo, resetForm } = useJobForm();
   const t = useTranslations('form.summaryPage');
   const job = useJobFormStore((state) => state.job);
@@ -36,7 +38,8 @@ function SummaryPage() {
     mutationFn: createJob,
     onSuccess: (data) => {
       // resetForm();
-      window.open(data?.checkoutUrl, '_blank');
+      // window.open(data?.checkoutUrl, '_blank');
+      router.push(data?.checkoutUrl);
     }
   });
 
