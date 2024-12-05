@@ -22,12 +22,17 @@ type Customer = {
   email: string;
 };
 
+type Service = {
+  type: 'TOW' | undefined;
+};
+
 type Job = {
   towLocation: Location;
   towDestination: Location;
   vehicle: Vehicle;
   customer: Customer;
   note?: string | undefined;
+  service: Service;
 };
 
 type StepName = 'find-me' | 'tow-location' | 'tow-destination' | 'vehicle-information' | 'customer-information' | 'add-note' | 'service-type' | 'summary';
@@ -90,6 +95,7 @@ type JobFormState = {
   setVehicle: (vehicle: Vehicle) => void;
   setCustomer: (customer: Customer) => void;
   setNote: (note: string | undefined) => void;
+  setService: (serviceType: 'TOW' | undefined) => void;
   reset: () => void;
 };
 
@@ -117,7 +123,10 @@ const DEFAULT_JOB: Job = {
     phone: '',
     email: ''
   },
-  note: ''
+  note: '',
+  service: {
+    type: 'TOW'
+  }
 };
 
 export const useJobFormStore = create<JobFormState>()(
@@ -133,6 +142,7 @@ export const useJobFormStore = create<JobFormState>()(
       setVehicle: (vehicle) => set((state) => ({ job: { ...state.job, vehicle } })),
       setCustomer: (customer) => set((state) => ({ job: { ...state.job, customer } })),
       setNote: (note) => set((state) => ({ job: { ...state.job, note } })),
+      setService: (serviceType) => set((state) => ({ job: { ...state.job, service: { type: serviceType } } })),
       reset: () => set({ job: DEFAULT_JOB })
     }),
     { name: 'jobFormStore' }

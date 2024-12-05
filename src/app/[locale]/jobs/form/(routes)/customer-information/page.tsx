@@ -44,7 +44,6 @@ function CustomerInformationPage() {
   });
 
   const handleOnSubmit = (data: FormProps) => {
-    console.log(data);
     setCustomer(data);
     goToNextStep();
   };

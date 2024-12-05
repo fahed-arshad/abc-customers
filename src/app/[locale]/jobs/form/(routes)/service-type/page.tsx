@@ -8,13 +8,14 @@ import { useForm } from 'react-hook-form';
 import { useTranslations } from 'next-intl';
 
 import useJobForm from '../../hooks/useJobForm';
+import { useJobFormStore } from '../../hooks/useJobFormStore';
 
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { Switch } from '@/components/ui/switch';
 
 import { ArrowRight } from 'lucide-react';
-import { Switch } from '@/components/ui/switch';
 
 const formSchema = z.object({
   isStandardServiceType: z.boolean()
@@ -25,16 +26,21 @@ type FormProps = z.infer<typeof formSchema>;
 function ServiceTypePage() {
   const { goToNextStep } = useJobForm();
   const t = useTranslations('form.serviceTypePage');
+  const service = useJobFormStore((state) => state.job.service);
+  const setService = useJobFormStore((state) => state.setService);
 
   const form = useForm<FormProps>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      isStandardServiceType: true
+      isStandardServiceType: false
+    },
+    values: {
+      isStandardServiceType: service?.type === 'TOW'
     }
   });
 
   const handleOnSubmit = (data: FormProps) => {
-    console.log(data);
+    setService(data.isStandardServiceType ? 'TOW' : undefined);
     goToNextStep();
   };
 
@@ -60,7 +66,7 @@ function ServiceTypePage() {
             )}
           />
           <div className="flex justify-center">
-            <Button type="submit" className="w-full md:w-fit">
+            <Button type="submit" className="w-full md:w-fit" disabled={!form.watch('isStandardServiceType')}>
               {t('cta')} <ArrowRight className="w-4 h-4" />
             </Button>
           </div>

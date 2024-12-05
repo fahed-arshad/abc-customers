@@ -38,7 +38,6 @@ function AddNotePage() {
   });
 
   const handleOnSubmit = (data: FormProps) => {
-    console.log(data);
     setNote(data.note);
     goToNextStep();
   };
