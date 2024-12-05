@@ -75,18 +75,18 @@ function SummaryPage() {
   return (
     <div className="container py-20">
       <h1 className="text-4xl text-center font-semibold">{t('title')}</h1>
-      <Separator className="my-8 w-full mx-auto md:w-[800px]" />
+      <Separator className="my-4 w-full mx-auto md:w-[800px]" />
       <h2 className="text-2xl text-center font-semibold">{t('description')}</h2>
       <div className="mt-8 max-w-[500px] mx-auto flex flex-col space-y-6">
         <SummaryField summaryField={{ title: t('locationField.title'), value: job.towLocation.address, onEdit: () => goTo(1) }}>
           <SummaryField.Input />
         </SummaryField>
 
-        <SummaryField summaryField={{ title: t('locationField.title'), value: job.towDestination.address, onEdit: () => goTo(2) }}>
+        <SummaryField summaryField={{ title: t('destinationField.title'), value: job.towDestination.address, onEdit: () => goTo(2) }}>
           <SummaryField.Input />
         </SummaryField>
 
-        <SummaryField summaryField={{ title: t('destinationField.title'), value: 'Tow' }}>
+        <SummaryField summaryField={{ title: t('serviceField.title'), value: 'Tow' }}>
           <SummaryField.Input />
         </SummaryField>
 
@@ -112,7 +112,7 @@ function SummaryPage() {
         </div>
 
         <div className="flex justify-center">
-          <Button type="submit" disabled={!checkedAgreement} loading={isPending} onClick={handleEnterPayment}>
+          <Button type="submit" disabled={!checkedAgreement} loading={isPending} onClick={handleEnterPayment} className="w-full md:w-fit">
             {t('cta')}
           </Button>
         </div>

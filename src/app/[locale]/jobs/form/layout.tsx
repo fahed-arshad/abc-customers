@@ -29,7 +29,7 @@ function JobsFormLayout({
 
   return (
     <div className="h-full overflow-hidden">
-      {progress > 0 && <Progress value={progress} className="absolute top-0 left-0 right-0 z-[999] bg-white rounded-none" />}
+      {progress > 0 && <Progress value={progress} className="fixed top-28 left-0 right-0 z-[999] bg-white rounded-none" />}
       <main className="h-[calc(100%-1rem)] overflow-y-auto">{children}</main>
     </div>
   );
