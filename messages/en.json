@@ -14,10 +14,12 @@
     },
     "towLocationPage": {
       "title": "TOW LOCATION",
+      "description": "Set the pick-up point for your vehicle.",
       "cta": "Confirm Location"
     },
     "towDestinationPage": {
       "title": "TOW DESTINATION",
+      "description": "Choose where your vehicle needs to go.",
       "cta": "Confirm Location"
     },
     "vehicleInformationPage": {

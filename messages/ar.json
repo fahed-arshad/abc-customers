@@ -14,10 +14,12 @@
     },
     "towLocationPage": {
       "title": "موقع السحب",
+      "description": "حدد موقع استلام المركبة.",
       "cta": "تأكيد الموقع"
     },
     "towDestinationPage": {
       "title": "موقع السحب",
+      "description": "اختر وجهة نقل المركبة",
       "cta": "تأكيد الموقع"
     },
     "vehicleInformationPage": {

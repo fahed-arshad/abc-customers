@@ -31,6 +31,7 @@ function useJobForm() {
   const goToPrevStep = () => {
     // Prevent going to the previous step if the current step
     if (currentStep.index === 0) {
+      window.location.href = 'https://abc-emergency.com';
       return;
     }
     const prevStep = Steps[currentStep.index - 1];

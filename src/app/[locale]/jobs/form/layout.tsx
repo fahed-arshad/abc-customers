@@ -28,9 +28,9 @@ function JobsFormLayout({
   if (!isLoaded) return <p className="text-center">Map is loading ...</p>;
 
   return (
-    <div>
-      {progress > 0 && <Progress value={progress} className="bg-white rounded-none" />}
-      {children}
+    <div className="h-full overflow-hidden">
+      {progress > 0 && <Progress value={progress} className="absolute top-0 left-0 right-0 z-[999] bg-white rounded-none" />}
+      <main className="h-[calc(100%-1rem)] overflow-y-auto">{children}</main>
     </div>
   );
 }

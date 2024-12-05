@@ -1,16 +1,17 @@
 import Header from './components/header';
 
-function JobsLayout({
+async function JobsLayout({
   children,
-  params: { locale }
+  params
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
   return (
-    <div>
+    <div className="relative h-screen overflow-hidden">
       <Header locale={locale} />
-      <main>{children}</main>
+      <main className="absolute top-28 left-0 right-0 h-[calc(100vh-7rem)]">{children}</main>
     </div>
   );
 }

@@ -38,8 +38,9 @@ function TowLocationPage() {
 
   return (
     <div>
-      <div className="py-8">
+      <div className="py-8 space-y-2">
         <h1 className="capitalize text-4xl text-center font-semibold">{t('title')}</h1>
+        <p className="text-center md:text-lg text-neutral-800">{t('description')}</p>
       </div>
 
       <div className="relative">
@@ -51,7 +52,7 @@ function TowLocationPage() {
           onLocationChanged={onLocationChanged}
         />
 
-        <Button size="lg" className="absolute top-72 font-semibold left-1/2 transform -translate-x-1/2 -translate-y-1/2" onClick={() => goToNextStep()}>
+        <Button size="lg" className="absolute bottom-20 font-semibold left-1/2 transform -translate-x-1/2 -translate-y-1/2" onClick={() => goToNextStep()}>
           {t('cta')} <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
       </div>
