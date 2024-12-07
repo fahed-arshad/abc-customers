@@ -8,8 +8,8 @@ import { ArrowDown } from 'lucide-react';
 function JobsPage() {
   const t = useTranslations('jobsPage');
   return (
-    <div>
-      <div className="bg-black h-[250px] md:h-[400px] flex items-center justify-center mb-8">
+    <div className="h-full overflow-y-auto">
+      <div className="bg-black h-[450px] flex items-center justify-center mb-8">
         <div className="container flex flex-col items-center justify-center space-y-6">
           <h1 className="text-center text-white text-xl md:text-3xl">{t('title')}</h1>
           <ArrowDown size={64} className="text-primary" />

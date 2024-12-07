@@ -51,9 +51,7 @@ function SummaryPage() {
 
   const contactInformation = `${job.customer.firstName} ${job.customer.lastName}\n${job.customer.phone}\n${job.customer.email}`;
 
-  const amountInformation = `Hookup: ${t('amountField.hookup', { hookup: jobPricing?.hookup })} Rials Omani\nMileage: ${t('amountField.mileage', {
-    mileage: `${jobPricing?.distanceInKm} km x ${jobPricing?.perKmFee}`
-  })}\nTotal: ${t('amountField.total', { total: jobPricing?.total })}`;
+  const amountInformation = `Hookup: ${jobPricing?.fixed} OMR\nMileage: ${jobPricing?.distanceInKm} km x ${jobPricing?.perKmFee} OMR per km\nTotal: ${jobPricing?.total} OMR`;
 
   const handleEnterPayment = () => {
     const dto = {
