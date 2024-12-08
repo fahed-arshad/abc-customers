@@ -7,6 +7,8 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 
+import { Toaster } from '@/components/ui/sonner';
+
 import ReactQueryProvider from '@/components/ui/react-query-provider';
 
 const poppins = Poppins({
@@ -40,6 +42,7 @@ export default async function RootLayout({
       <body className={`${poppins.className} antialiased`}>
         <ReactQueryProvider>
           <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+          <Toaster />
         </ReactQueryProvider>
       </body>
     </html>

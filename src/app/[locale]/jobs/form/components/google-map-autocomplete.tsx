@@ -11,9 +11,10 @@ import { OMAN_BOUNDS } from './google-map';
 type GoogleMapsAutocompleteProps = React.HTMLAttributes<HTMLDivElement> & {
   location?: Location;
   onLocationChanged?: (location: Location) => void;
+  onLocationNotFound: () => void;
 };
 
-function GoogleMapAutocomplete({ className, location, onLocationChanged }: GoogleMapsAutocompleteProps) {
+function GoogleMapAutocomplete({ className, location, onLocationChanged, onLocationNotFound }: GoogleMapsAutocompleteProps) {
   const [address, setAddress] = useState(location?.address ?? '');
   const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete | null>(null);
 
@@ -30,15 +31,13 @@ function GoogleMapAutocomplete({ className, location, onLocationChanged }: Googl
     if (!autocomplete) return;
 
     const place = autocomplete.getPlace();
-    if (!place?.place_id) return;
 
-    if (!place?.formatted_address) return;
-    setAddress(place.formatted_address);
+    if (!place?.place_id || !place?.formatted_address || !place?.geometry?.location) return onLocationNotFound();
 
-    if (!place?.geometry?.location) return;
+    setAddress(place.name ?? place.formatted_address);
 
     onLocationChanged?.({
-      address: place.formatted_address ?? '',
+      address: place.name ?? place.formatted_address ?? '',
       lat: place.geometry?.location.lat(),
       lng: place.geometry?.location.lng()
     });

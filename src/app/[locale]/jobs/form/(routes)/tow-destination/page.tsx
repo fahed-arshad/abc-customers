@@ -1,8 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useTranslations } from 'next-intl';
+
+import { toast } from 'sonner';
 
 import { Location, useJobFormStore } from '../../hooks/useJobFormStore';
 import useJobForm from '../../hooks/useJobForm';
@@ -20,6 +22,7 @@ function TowDestinationPage() {
   const t = useTranslations('form.towDestinationPage');
   const towDestination = useJobFormStore((state) => state.job.towDestination);
   const setTowDestination = useJobFormStore((state) => state.setTowDestination);
+  const [validLocation, setValidLocation] = useState(!!towDestination.address);
 
   useEffect(() => {
     findMyLocation().then((location) => {
@@ -32,6 +35,12 @@ function TowDestinationPage() {
   const onLocationChanged = (location: Location) => {
     // Save the location into the Zustand store
     setTowDestination(location);
+    setValidLocation(true);
+  };
+
+  const onLocationNotFound = () => {
+    toast.error('Could not find the location. Please try again');
+    setValidLocation(false);
   };
 
   return (
@@ -48,9 +57,16 @@ function TowDestinationPage() {
           className="absolute top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[350px] md:w-[400px] rounded-lg z-10"
           location={towDestination}
           onLocationChanged={onLocationChanged}
+          onLocationNotFound={onLocationNotFound}
         />
 
-        <Button type="submit" size="lg" className="fixed bottom-5 w-4/5 md:w-fit font-semibold left-1/2 transform -translate-x-1/2 -translate-y-1/2" onClick={() => goToNextStep()}>
+        <Button
+          type="submit"
+          size="lg"
+          className="fixed bottom-5 w-4/5 md:w-fit font-semibold left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          disabled={!validLocation}
+          onClick={() => goToNextStep()}
+        >
           {t('cta')} <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
       </div>
