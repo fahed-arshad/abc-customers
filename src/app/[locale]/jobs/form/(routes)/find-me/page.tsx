@@ -11,7 +11,7 @@ function FindMePage() {
   const t = useTranslations('form.findMePage');
 
   return (
-    <div className="bg-black h-[500px]">
+    <div className="bg-black h-full overflow-y-hidden">
       <div className="container h-full flex flex-col items-center justify-center space-y-6 mb-8">
         <div className="flex flex-row items-center gap-10 space-y-4">
           <div className="space-y-4">
