@@ -27,7 +27,7 @@ function SummaryPage() {
   const [checkedAgreement, setCheckedAgreement] = useState(false);
 
   const { mutateAsync: calculateJobPricingMutation, data: jobPricing } = useMutation({
-    mutationFn: () => calculateJobPricing(job.towLocation.address, job.towDestination.address)
+    mutationFn: () => calculateJobPricing(job.towLocation, job.towDestination)
   });
 
   const {
@@ -58,8 +58,8 @@ function SummaryPage() {
       service: 'Standard',
       serviceType: 'Tow',
       note: job.note,
-      startLocation: job.towLocation.address,
-      endLocation: job.towDestination.address,
+      startLocation: job.towLocation,
+      endLocation: job.towDestination,
       vehicleMake: job.vehicle.make,
       vehicleModel: job.vehicle.model,
       vehicleYear: job.vehicle.year,
