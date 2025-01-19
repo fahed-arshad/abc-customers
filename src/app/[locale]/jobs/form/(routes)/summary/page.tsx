@@ -19,6 +19,8 @@ import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
 import SummaryField from './components/summary-field';
 
+import { toast } from 'sonner';
+
 function SummaryPage() {
   const router = useRouter();
   const { goTo, resetForm } = useJobForm();
@@ -38,8 +40,10 @@ function SummaryPage() {
     mutationFn: createJob,
     onSuccess: (data) => {
       // resetForm();
-      // window.open(data?.checkoutUrl, '_blank');
       router.push(data?.checkoutUrl);
+    },
+    onError: () => {
+      toast.error('Failed to create the job. Please try again later.');
     }
   });
 
@@ -55,20 +59,22 @@ function SummaryPage() {
 
   const handleEnterPayment = () => {
     const dto = {
-      service: 'Standard',
-      serviceType: 'Tow',
       note: job.note,
       startLocation: job.towLocation,
       endLocation: job.towDestination,
-      vehicleMake: job.vehicle.make,
-      vehicleModel: job.vehicle.model,
-      vehicleYear: job.vehicle.year,
-      vehicleColor: job.vehicle.color,
-      vehicleRegistration: job.vehicle.registrationNo,
-      firstName: job.customer.firstName,
-      lastName: job.customer.lastName,
-      customerPhone: job.customer.phone,
-      customerEmail: job.customer.email
+      vehicle: {
+        make: job.vehicle.make,
+        model: job.vehicle.model,
+        year: job.vehicle.year,
+        color: job.vehicle.color,
+        registration: job.vehicle.registrationNo
+      },
+      customer: {
+        firstName: job.customer.firstName,
+        lastName: job.customer.lastName,
+        phone: job.customer.phone,
+        email: job.customer.email
+      }
     };
     createJobMutation(dto);
   };
