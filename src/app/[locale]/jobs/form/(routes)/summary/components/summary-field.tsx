@@ -72,5 +72,5 @@ SummaryField.Input = function () {
 
 SummaryField.Textarea = function () {
   const { summaryField } = useSummaryFieldContext();
-  return <ShadTextarea disabled value={summaryField.value} className="disabled:opacity-100 resize-none" />;
+  return <ShadTextarea disabled value={summaryField.value} rows={4} className="disabled:opacity-100 resize-none" />;
 };
