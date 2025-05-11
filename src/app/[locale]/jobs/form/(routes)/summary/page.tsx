@@ -55,7 +55,7 @@ function SummaryPage() {
 
   const contactInformation = `${job.customer.firstName} ${job.customer.lastName}\n${job.customer.phone}\n${job.customer.email}`;
 
-  const amountInformation = `Hookup: ${jobPricing?.fixed} OMR\nMileage: ${jobPricing?.distanceInKm} km x ${jobPricing?.perKmFee} OMR per km\nVAT: ${jobPricing?.customerPricing?.vat} OMR (5% of VAT)\nTotal including VAT: ${jobPricing?.total} OMR`;
+  const amountInformation = `Hookup: ${jobPricing?.fixed} OMR\Distance: ${jobPricing?.distanceInKm} km x ${jobPricing?.perKmFee} OMR per km\nVAT: ${jobPricing?.customerPricing?.vat} OMR (5% of VAT)\nTotal including VAT: ${jobPricing?.total} OMR`;
 
   const handleEnterPayment = () => {
     const dto = {
